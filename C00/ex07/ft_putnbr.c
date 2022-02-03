@@ -12,25 +12,72 @@
 
 #include "unistd.h"
 
-void	print_number(int num)
+int find_digit(int nb)
 {
-	while (num > 0)
+	int count = 0;
+	while (nb >= 10)
 	{
-		char a;
-
-		a = num / 10 + 15;
-		write(1, &a, 1);
-		num = num % 10;
-	}	
-
+		nb = nb / 10;
+		count++;
+	}
+	return (count);
 }
 
-void	ft_putnbr(int nb)
+int multiple(int nb)
 {
-	print_number(nb);
+	int calculated_number = 1;
+	int digit = find_digit(nb);
+	
+	if (digit == 0)
+	{
+		return (1);
+	}
+	else
+	{
+		while (digit > 0)
+		{
+			calculated_number = calculated_number * 10;
+			digit--;
+		}
+		return (calculated_number);
+	}
 }
 
-int 	main(void)
+void print_number(int nb)
 {
-	ft_putnbr(42);
+	int digit_nbr = multiple(nb);
+	char c;
+	
+	if (nb < 10)
+	{
+		c = nb + '0';
+		write(1, &c, 1);
+	}
+	else
+	{
+		while (nb > 0)
+		{
+			c = nb / digit_nbr + '0';
+			nb = nb - (nb / digit_nbr) * digit_nbr;
+			write(1, &c, 1);
+			digit_nbr = digit_nbr / 10;
+		}
+	}
+}
+
+void ft_putnbr(int nb)
+{
+	if (nb > 0)
+	{
+		print_number(nb);
+	}
+	else if (nb < 0)
+	{
+		write(1, "-", 1);
+		print_number(nb * -1);
+	}
+	else
+	{
+		write(1, "0", 1);
+	}
 }
