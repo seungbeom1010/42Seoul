@@ -23,4 +23,9 @@
 6. ft_strlcat(char *dest, char *src, unsigned int n)
     두 문자열을 붙이는 함수
     dest 사이즈 + src 사이즈 + null 값의 길이 == n
-    리턴 값은 dest와 src의 길이
+    
+    <return>
+    if len(dest) <= n
+        return len(dest) + len(src)
+    else
+        return n + len(src)
