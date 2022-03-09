@@ -1,4 +1,4 @@
-# 42 piscine
+# 42Seoul
 
-lvl 11
-BSQ 100%
+# 42piscine
+  - 2022년 1월 31일 - 2월 25일 합
