@@ -1,5 +1,5 @@
 # 42Seoul
-  - Libft 테스터ㅎㅁ
+  - Libft 테스터
 
 
 # 42piscine
