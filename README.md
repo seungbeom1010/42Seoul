@@ -1,6 +1,7 @@
 # 42Seoul
   - Libft 테스터
+  - Libft half way to go
 
 
 # 42piscine
-  - 2022년 1월 31일 - 2월 25일   ㅁ   합
+  - 2022년 1월 31일 - 2월 25일   합
