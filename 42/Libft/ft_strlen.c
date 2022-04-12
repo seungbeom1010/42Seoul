@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/09 16:29:30 by seunjang          #+#    #+#             */
-/*   Updated: 2022/03/11 17:02:52 by seunjang         ###   ########.fr       */
+/*   Created: 2022/03/09 16:30:42 by seunjang          #+#    #+#             */
+/*   Updated: 2022/04/12 16:01:20 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(int c)
+size_t	ft_strlen(const char *str)
 {
-	if (32 <= c && c <= 126)
-		return (1);
-	return (0);
+	size_t	count;
+
+	count = 0;
+	while (str[count])
+		count++;
+	return (count);
 }

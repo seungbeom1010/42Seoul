@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/09 16:27:14 by seunjang          #+#    #+#             */
-/*   Updated: 2022/03/11 17:02:54 by seunjang         ###   ########.fr       */
+/*   Created: 2022/03/09 16:29:30 by seunjang          #+#    #+#             */
+/*   Updated: 2022/04/12 16:00:22 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+int	ft_isprint(int c)
 {
-	if (0 <= c && c <= 127)
+	if (32 <= c && c <= 126)
 		return (1);
-	return (0);
+	else
+		return (0);
 }

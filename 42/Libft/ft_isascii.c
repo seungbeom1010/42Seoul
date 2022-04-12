@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/07 17:32:22 by seunjang          #+#    #+#             */
-/*   Updated: 2022/03/11 17:02:54 by seunjang         ###   ########.fr       */
+/*   Created: 2022/03/09 16:27:14 by seunjang          #+#    #+#             */
+/*   Updated: 2022/04/12 15:55:04 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(char c)
+int	ft_isascii(int c)
 {
-	if ('A' <= c && c <= 'Z')
+	if (0 <= c && c <= 127)
 		return (1);
-	else if ('a' <= c && c <= 'z')
-		return (2);
 	else
 		return (0);
 }

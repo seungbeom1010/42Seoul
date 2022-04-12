@@ -6,15 +6,13 @@
 #    By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/08 15:41:15 by seungbeom         #+#    #+#              #
-#    Updated: 2022/04/08 22:40:47 by seungbeom        ###   ########.fr        #
+#    Updated: 2022/04/12 16:29:39 by seungbeom        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-# HEADERS = ./includes
-
-SRCS = ft_isalpha.c
+SRCS = ft_isalpha.c 
 
 OBJS = $(SRCS:.c=.o)
 

@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/07 17:36:40 by seunjang          #+#    #+#             */
-/*   Updated: 2022/03/11 17:02:53 by seunjang         ###   ########.fr       */
+/*   Created: 2022/03/07 19:38:22 by seunjang          #+#    #+#             */
+/*   Updated: 2022/04/12 15:54:48 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+int	ft_isalnum(int c)
 {
-	if ('0' <= c && c <= '9')
+	if ('A' <= c && c <= 'Z')
+		return (1);
+	else if ('a' <= c && c <= 'z')
+		return (1);
+	else if ('0' <= c && c <= '9')
 		return (1);
 	else
 		return (0);
