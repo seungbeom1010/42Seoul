@@ -6,7 +6,7 @@
 /*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:47:08 by seunjang          #+#    #+#             */
-/*   Updated: 2022/04/12 16:03:45 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/04/12 22:28:36 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void	*ft_memset(void *b, int c, size_t len)
 	index = 0;
 	while (index < len)
 		s[index++] = (unsigned char)c;
-	return ((void *)s);
+	return (s);
 }
