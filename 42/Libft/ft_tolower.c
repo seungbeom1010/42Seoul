@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 22:42:19 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/04/13 15:29:23 by seungbeom        ###   ########.fr       */
+/*   Created: 2022/04/13 15:30:27 by seungbeom         #+#    #+#             */
+/*   Updated: 2022/04/13 15:34:33 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+int	ft_tolower(int c)
 {
-	size_t	start;
-	size_t	index;
-	size_t	dst_length;
-	size_t	src_length;
-
-	dst_length = ft_strlen(dst);
-	src_length = ft_strlen(src);
-	index = 0;
-	start = ft_strlen(dst);
-	if (dst_length < dstsize)
-	{
-		while (src[index] && start + 1 < dstsize)
-			dst[start++] = src[index++];
-		dst[start] = '\0';
-		return (src_length + dst_length);
-	}
+	if (65 <= c && c <= 90)
+		return (c + 32);
 	else
-		return (src_length + dstsize);
+		return (c);
 }
