@@ -6,7 +6,7 @@
 /*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 14:49:30 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/04/14 14:17:51 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:22:12 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *str1, const char *str2, size_t num);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
 #endif
