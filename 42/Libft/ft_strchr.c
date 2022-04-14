@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
+/*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:34:51 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/04/13 22:30:32 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/04/14 12:31:45 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strchr(const char *s, int c)
 	while (index <= ft_strlen(s))
 	{
 		if (s[index] == (char)c)
-			return (&(s[index]));
+			return ((char *)(s + index));
 		index++;
 	}
 	return (0);
