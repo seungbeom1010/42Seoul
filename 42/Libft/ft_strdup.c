@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 16:59:57 by seunjang          #+#    #+#             */
-/*   Updated: 2022/04/18 17:40:50 by seunjang         ###   ########.fr       */
+/*   Created: 2022/04/18 17:54:19 by seunjang          #+#    #+#             */
+/*   Updated: 2022/04/18 18:04:15 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_strdup(const char *s1)
 {
+	char	*p;
 	int		index;
-	int		minus;
-	int		result;
 
+	p = (char *)malloc(ft_strlen(s1) + 1);
+	if (!p)
+		return (0);
 	index = 0;
-	minus = 1;
-	result = 0;
-	while ((9 <= str[index] && str[index] <= 13) || str[index] == 32)
-		index++;
-	if (str[index] == '+' || str[index] == '-')
+	while (s1[index])
 	{
-		if (str[index] == '-')
-			minus *= -1;
+		p[index] = s1[index];
 		index++;
 	}
-	while ('0' <= str[index] && str[index] <= '9')
-	{
-		result = result * 10 + (str[index] - '0');
-		index++;
-	}
-	return (result * minus);
+	p[index] = '\0';
+	return (p);
 }
