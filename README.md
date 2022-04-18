@@ -1,6 +1,5 @@
 # 42Seoul
   - Libft 테스터
-  - Libft half way to go
 
 
 # 42piscine
