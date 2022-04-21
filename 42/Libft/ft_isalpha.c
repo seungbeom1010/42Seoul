@@ -6,7 +6,7 @@
 /*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 14:48:11 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/04/12 16:24:45 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/04/20 16:03:40 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_isalpha(int c)
 	if ('A' <= c && c <= 'Z')
 		return (1);
 	else if ('a' <= c && c <= 'z')
-		return (2);
+		return (1);
 	else
 		return (0);
 }
