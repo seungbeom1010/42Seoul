@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
+/*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 21:43:46 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/04/24 20:46:07 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/04/26 13:51:24 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,15 @@ static char	*ft_buffset(unsigned int tmp_n, int sign)
 	if (sign == 1)
 	{
 		tmp_buff = (char *)malloc(sizeof(char) * (ft_digit(tmp_n) + 1));
+		if (!tmp_buff)
+			return (0);
 		tmp_buff[ft_digit(tmp_n)] = '\0';
 	}
 	else
 	{
 		tmp_buff = (char *)malloc(sizeof(char) * (ft_digit(tmp_n) + 2));
+		if (!tmp_buff)
+			return (0);
 		tmp_buff[0] = '-';
 		tmp_buff[ft_digit(tmp_n) + 1] = '\0';
 	}

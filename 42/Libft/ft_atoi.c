@@ -6,7 +6,7 @@
 /*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:59:57 by seunjang          #+#    #+#             */
-/*   Updated: 2022/04/21 15:25:20 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:17:40 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	size_t	index;
-	int		sign;
-	int		result;
+	size_t				index;
+	int					sign;
+	unsigned long long	result;
 
 	index = 0;
 	sign = 1;
@@ -34,5 +34,9 @@ int	ft_atoi(const char *str)
 		result = result * 10 + (str[index] - '0');
 		index++;
 	}
-	return (result * sign);
+	if (result > 9223372036854775808U && sign == -1)
+		return (0);
+	if (result > 9223372036854775807U && sign == 1)
+		return (-1);
+	return ((int)result * sign);
 }

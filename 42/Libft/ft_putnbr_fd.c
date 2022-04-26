@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
+/*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 21:04:51 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/04/24 21:17:22 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/04/26 14:08:04 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_digit(int n)
 	while (n > 9)
 	{
 		n /= 10;
-		count++;
+		count *= 10;
 	}
 	return (count);
 }
@@ -28,12 +28,21 @@ static int	ft_digit(int n)
 void	ft_putnbr_fd(int n, int fd)
 {
 	size_t	len;
+	char	temp;
 
 	if (n == -2147483648)
-		len = 11;
-	else if (n >= 0)
-		len = ft_digit(n);
-	else
-		len = ft_digit(n * -1) + 1;
-	write(fd, ft_itoa(n), len);
+	{
+		write (fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+		write(fd, "-", 1);
+	len = ft_digit(n);
+	while (len > 0)
+	{
+		temp = n / len + '0';
+		write(fd, &temp, 1);
+		n %= len;
+		len /= 10;
+	}
 }

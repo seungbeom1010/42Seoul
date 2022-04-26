@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
+/*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 21:03:19 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/04/24 21:11:28 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/04/26 13:56:31 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_putendl_fd(char *s, int fd)
 {
 	size_t	index;
 
+	if (!s)
+		return ;
 	index = 0;
 	while (s[index])
 	{
