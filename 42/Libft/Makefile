@@ -6,7 +6,7 @@
 #    By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/08 15:41:15 by seungbeom         #+#    #+#              #
-#    Updated: 2022/04/24 21:04:21 by seungbeom        ###   ########.fr        #
+#    Updated: 2022/04/26 12:06:28 by seungbeom        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,11 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 
 OBJS = $(SRCS:.c=.o)
 
+BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
+		ft_lstdelone.c ft_lstclear.c ft_lstiter.c
+
+BONUS_OBJS = $(BONUS:.c=.o)
+
 FLAGS = -Wall -Wextra -Werror
 
 all : ${NAME}
@@ -33,11 +38,14 @@ $(NAME) : $(OBJS)
 	ar rc $(NAME) *.o
 
 clean :
-	rm -rf $(OBJS)
+	rm -rf $(OBJS) $(BONUS_OBJS)
 
 fclean : clean
 	rm -f $(NAME)
 
 re : fclean all
+
+bonus : $(OBJS) $(BONUS_OBJS)
+	ar rc $(NAME) $(OBJS) $(BONUS_OBJS)
 
 .PHONY : all clean fclean re
