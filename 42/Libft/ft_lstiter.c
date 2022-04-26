@@ -6,7 +6,7 @@
 /*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 12:04:49 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/04/26 12:05:10 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/04/26 12:07:32 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }
