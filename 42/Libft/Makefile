@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+         #
+#    By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/08 15:41:15 by seungbeom         #+#    #+#              #
-#    Updated: 2022/04/26 12:19:15 by seungbeom        ###   ########.fr        #
+#    Updated: 2022/04/29 12:35:58 by seunjang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ all : ${NAME}
 %.o : %.c
 	gcc -c ${FLAGS} $< -o $@ -I libft.h
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(BONUS_OBJS)
 	ar rc $(NAME) *.o
 
 clean :
@@ -45,7 +45,7 @@ fclean : clean
 
 re : fclean all
 
-bonus : $(OBJS) $(BONUS_OBJS)
-	ar rc $(NAME) $(OBJS) $(BONUS_OBJS)
+bonus : $(BONUS_OBJS)
+	ar rc $(NAME) $(BONUS_OBJS)
 
 .PHONY : all clean fclean re

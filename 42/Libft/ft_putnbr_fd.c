@@ -6,7 +6,7 @@
 /*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 21:04:51 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/04/26 14:08:04 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/04/29 12:42:50 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	ft_putnbr_fd(int n, int fd)
 		return ;
 	}
 	if (n < 0)
+	{
 		write(fd, "-", 1);
+		n *= -1;
+	}
 	len = ft_digit(n);
 	while (len > 0)
 	{
