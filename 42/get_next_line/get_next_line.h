@@ -6,7 +6,7 @@
 /*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:47 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/04 16:31:15 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/05/04 16:35:41 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*get_next_line(int fd);
 
-
+typedef struct s_list
+{
+	int				fd;
+	char			*content;
+	struct s_list	*next;
+}	t_list;
 
 #endif
