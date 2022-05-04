@@ -6,7 +6,7 @@
 /*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:47 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/03 20:11:07 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/05/04 16:31:15 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 # define BUTTER_SIZE 1
 
-char	*get_next_line(int fd)
+size_t	ft_strlen(const char *str);
+char	*ft_strdup(const char *s1);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*get_next_line(int fd);
 
 
 
