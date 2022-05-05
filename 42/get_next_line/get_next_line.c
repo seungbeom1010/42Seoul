@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:13 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/04 16:58:21 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/05/05 23:42:00 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_newline(t_list *result)
 {
-	
+	as
 }
 
 char	*get_next_line(int fd)
