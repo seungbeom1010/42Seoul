@@ -6,15 +6,42 @@
 /*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:38 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/04 16:35:19 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/05/16 20:14:45 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+int	check_newline(char *s, int c)
 {
-	size_t	count;
+	int	index;
+
+	index = 0;
+	while (index < ft_strlen(s))
+	{
+		if (s[index] == (char)c)
+			return (index);
+		index++;
+	}
+	return (-1);
+}
+
+t_list	*ft_lstnew(void *content, int fd)
+{
+	t_list	*new;
+
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (0);
+	new->fd = fd;
+	new->content = content;
+	new->next = NULL;
+	return (new);
+}
+
+int	ft_strlen(const char *str)
+{
+	int	count;
 
 	count = 0;
 	while (str[count])
@@ -22,7 +49,7 @@ size_t	ft_strlen(const char *str)
 	return (count);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(char *s1)
 {
 	char	*p;
 	size_t	index;
