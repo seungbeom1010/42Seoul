@@ -6,11 +6,21 @@
 /*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:38 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/16 20:14:45 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/05/16 20:39:09 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int	ft_strlen(const char *str)
+{
+	int	count;
+
+	count = 0;
+	while (str[count])
+		count++;
+	return (count);
+}
 
 int	check_newline(char *s, int c)
 {
@@ -39,15 +49,6 @@ t_list	*ft_lstnew(void *content, int fd)
 	return (new);
 }
 
-int	ft_strlen(const char *str)
-{
-	int	count;
-
-	count = 0;
-	while (str[count])
-		count++;
-	return (count);
-}
 
 char	*ft_strdup(char *s1)
 {

@@ -6,7 +6,7 @@
 /*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:13 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/16 20:15:08 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/05/16 20:50:36 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,10 @@ char	*get_newline(char *content)
 	int		index;
 
 	index = 0;
-	write(1, "0", 1);
-	line = (char *)malloc(check_newline(content, '\0') + 1);
+	line = (char *)malloc(check_newline(content, '\n') + 2);
 	if (!line)
 		return (0);
-	write(1, "0", 1);
-	while (index < check_newline(content, '\0') && content[index])
+	while (index < check_newline(content, '\n') + 1)
 	{
 		line[index] = content[index];
 		index++;
@@ -79,10 +77,14 @@ char	*get_content(t_list *node, int fd)
 	int		tmp_bufsize;
 
 	new_content = node->content;
-	while ((tmp_bufsize = read(fd, buff, BUFFER_SIZE)) > 0 && check_newline(buff, '\n'))
+	while ((tmp_bufsize = read(fd, buff, BUFFER_SIZE)) > 0)
 	{	
 		buff[tmp_bufsize] = '\0';
+		if(!new_content)
+			new_content = ft_strdup("\0");	
 		new_content = ft_strjoin(new_content, ft_strdup(buff));
+		if (check_newline(new_content, '\n') != -1)
+			break;
 	}
 	if (!new_content)
 	{
@@ -102,13 +104,9 @@ char	*get_next_line(int fd)
 	if (!node)
 		return (0);
 	node->content = get_content(node, fd);
-	write(1, "1", 1);
-	write(1, "1", 1);
 	line = get_newline(node->content);
-	write(1, "1", 1);
 	if (!line)
 		return (0);
-	write(1, "1", 1);
 	node->content = get_newsave(node->content, check_newline(node->content, '\0'));
 	return (line);
 }
