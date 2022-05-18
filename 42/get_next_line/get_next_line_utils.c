@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:38 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/16 20:39:09 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:03:28 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@ int	check_newline(char *s, int c)
 {
 	int	index;
 
+	if (!s)
+		return (0);
 	index = 0;
 	while (index < ft_strlen(s))
 	{
 		if (s[index] == (char)c)
-			return (index);
+			return (index + 1);
 		index++;
 	}
-	return (-1);
+	return (0);
 }
 
 t_list	*ft_lstnew(void *content, int fd)

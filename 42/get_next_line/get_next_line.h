@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:47 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/16 20:07:26 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/05/17 18:34:46 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		check_newline(char *s, int c);
 t_list	*ft_lstnew(void *content, int fd);
 t_list	*get_node(t_list **head, int fd);
 char	*get_newline(char *content);
-char	*get_newsave(char *content, int index);
+char	*get_newsave(t_list *node);
 char	*get_content(t_list *node, int fd);
 char	*get_next_line(int fd);
 
