@@ -6,7 +6,7 @@
 /*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:13 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/17 18:33:31 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/05/25 20:48:34 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 t_list	*get_node(t_list **head, int fd)
 {
 	t_list	*node;
-	
+
 	if (*head == NULL)
 	{
-		node = ft_lstnew(0, fd);
+		node = ft_lstnew(fd);
 		*head = node;
 		return (node);
 	}
@@ -29,69 +29,53 @@ t_list	*get_node(t_list **head, int fd)
 			return (node);
 		node = node->next;
 	}
-	node = ft_lstnew(0, fd);
-	return (node);
+	node->next = ft_lstnew(fd);
+	return (node->next);
 }
 
-char	*get_content(t_list *node, int fd)
+char	*get_content(char **content, int fd)
 {
-	char	*new_content;
 	char	buff[BUFFER_SIZE + 1];
-	int		tmp_bufsize;
+	char	*temp_cont;
+	int		temp_size;
 
-	new_content = node->content;
-	while ((tmp_bufsize = read(fd, buff, BUFFER_SIZE)) > 0)
+	temp_size = 1;
+	while (temp_size > 0)
 	{	
-		buff[tmp_bufsize] = '\0';
-		if(!new_content)
-			new_content = ft_strdup("\0");	
-		new_content = ft_strjoin(new_content, ft_strdup(buff));
-		if (check_newline(new_content, '\n'))
+		temp_size = read(fd, buff, BUFFER_SIZE);
+		if (temp_size == -1)
+		{
+			free(*content);
+			return (0);
+		}
+		buff[temp_size] = '\0';
+		temp_cont = ft_strjoin(*content, buff);
+		free(*content);
+		*content = temp_cont;
+		if (ft_strchr(*content, '\n'))
 			break ;
 	}
-	return (new_content);
+	return (*content);
 }
 
-char	*get_newline(char *content)
-{
-	char	*line;
-	int		index;
-	int		line_length;
-
-	index = 0;
-	if (check_newline(content, '\n'))
-		line_length = check_newline(content, '\n');
-	else
-		line_length = ft_strlen(content);
-	line = (char *)malloc(line_length + 1);
-	if (!line)
-		return (0);
-	while (index < line_length)
-	{
-		line[index] = content[index];
-		index++;
-	}
-	line[index] = '\0';
-	return (line);
-}
-
-char	*get_newsave(t_list *node)
+char	*get_newsave(char *content)
 {
 	char	*new_content;
 	int		index;
 	int		new_index;
 
-	new_index = 0;
-	if (!(check_newline(node->content, '\n')))
-		index = check_newline(node->content, '\n');
-	else
-		index = ft_strlen(node->content);
-	new_content = (char *)malloc(ft_strlen(node->content) - index + 1);
+	index = 0;
+	while (content[index] && content[index] != '\n')
+		index++;
+	if (content[index] == '\0')
+		return (0);
+	new_content = (char *)malloc(ft_strlen(content) - index);
 	if (!new_content)
 		return (0);
-	while (new_index < ft_strlen(node->content) - index + 1)
+	new_index = 0 ;
+	while (content[index + 1])
 	{
-		new_content[new_index] = (node->content)[index];
+		new_content[new_index] = content[index + 1];
 		new_index++;
 		index++;
 	}
@@ -99,20 +83,50 @@ char	*get_newsave(t_list *node)
 	return (new_content);
 }
 
+char	*get_newline(char *content)
+{
+	char	*line;
+	int		index;
+
+	index = 0;
+	if (!(content[index]))
+		return (0);
+	while (content[index] && content[index] != '\n')
+		index++;
+	line = (char *)malloc(index + 2);
+	if (!line)
+		return (0);
+	index = 0;
+	while (content[index] && content[index] != '\n')
+	{
+		line[index] = content[index];
+		index++;
+	}
+	if (content[index] == '\n')
+		line[index++] = '\n';
+	line[index] = '\0';
+	return (line);
+}
+
 char	*get_next_line(int fd)
 {
 	static t_list	*head;
 	t_list			*node;
 	char			*line;
-	
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
 	node = get_node(&head, fd);
 	if (!node)
 		return (0);
-	node->content = get_content(node, fd);
-	line = get_newline(node->content);
-	if (!line)
+	node->content = get_content(&(node->content), fd);
+	if (!(node->content))
+	{
+		free(node->content);
+		ft_lstdel(&head, &node);
 		return (0);
-	node->content = get_newsave(node);
-	printf("after node->content : %s\n", node->content);
+	}
+	line = get_newline(node->content);
+	node->content = get_newsave(node->content);
 	return (line);
 }

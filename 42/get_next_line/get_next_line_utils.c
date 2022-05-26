@@ -6,7 +6,7 @@
 /*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:38 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/17 15:03:28 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/05/25 17:13:16 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,35 @@ int	ft_strlen(const char *str)
 	return (count);
 }
 
-int	check_newline(char *s, int c)
+int	ft_strchr(char *content, int c)
 {
-	int	index;
+	int		index;
 
-	if (!s)
-		return (0);
 	index = 0;
-	while (index < ft_strlen(s))
-	{
-		if (s[index] == (char)c)
-			return (index + 1);
+	while (content[index] && content[index] != (char)c)
 		index++;
-	}
+	if (content[index] == (char)c)
+		return (1);
 	return (0);
 }
 
-t_list	*ft_lstnew(void *content, int fd)
+void	ft_lstdel(t_list **head, t_list **node)
+{
+	t_list	*temp_node;
+
+	temp_node = *head;
+	while (!(temp_node->next) && temp_node->next != *node)
+		temp_node = temp_node->next;
+	if (temp_node->next == NULL)
+		free(temp_node);
+	else
+	{
+		temp_node->next = (*node)->next;
+		free(*node);
+	}
+}
+
+t_list	*ft_lstnew(int fd)
 {
 	t_list	*new;
 
@@ -46,28 +58,10 @@ t_list	*ft_lstnew(void *content, int fd)
 	if (!new)
 		return (0);
 	new->fd = fd;
-	new->content = content;
+	new->content = (char *)malloc(1);
+	new->content[0] = '\0';
 	new->next = NULL;
 	return (new);
-}
-
-
-char	*ft_strdup(char *s1)
-{
-	char	*p;
-	size_t	index;
-
-	p = (char *)malloc(ft_strlen(s1) + 1);
-	if (!p)
-		return (0);
-	index = 0;
-	while (s1[index])
-	{
-		p[index] = s1[index];
-		index++;
-	}
-	p[index] = '\0';
-	return (p);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
