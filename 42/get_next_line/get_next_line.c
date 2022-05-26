@@ -6,7 +6,7 @@
 /*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:13 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/25 20:48:34 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/05/26 21:48:56 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*get_node(t_list **head, int fd)
 
 	if (*head == NULL)
 	{
-		node = ft_lstnew(fd);
+		node = ft_lstnew(NULL, fd);
 		*head = node;
 		return (node);
 	}
@@ -29,8 +29,9 @@ t_list	*get_node(t_list **head, int fd)
 			return (node);
 		node = node->next;
 	}
-	node->next = ft_lstnew(fd);
-	return (node->next);
+	node = ft_lstnew(NULL, fd);
+	// 마지막 노드->next에 새롭게 생성된 구조체가 들어갔는지 확인해야함
+	return (node);
 }
 
 char	*get_content(char **content, int fd)
@@ -43,6 +44,8 @@ char	*get_content(char **content, int fd)
 	while (temp_size > 0)
 	{	
 		temp_size = read(fd, buff, BUFFER_SIZE);
+		if (temp_size == 0 && *content == 0)
+			return (0);
 		if (temp_size == -1)
 		{
 			free(*content);

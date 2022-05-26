@@ -6,7 +6,7 @@
 /*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:47 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/25 17:12:48 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/05/26 21:31:58 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ char	*get_newline(char *content);
 char	*get_newsave(char *content);
 char	*get_content(char **content, int fd);
 char	*get_next_line(int fd);
+char	*ft_strdup(const char *s1);
 
 #endif

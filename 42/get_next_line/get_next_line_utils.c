@@ -6,7 +6,7 @@
 /*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:38 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/25 17:13:16 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/05/26 21:49:05 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_lstdel(t_list **head, t_list **node)
 	t_list	*temp_node;
 
 	temp_node = *head;
-	while (!(temp_node->next) && temp_node->next != *node)
+	while (!(temp_node))
 		temp_node = temp_node->next;
 	if (temp_node->next == NULL)
 		free(temp_node);
@@ -50,7 +50,7 @@ void	ft_lstdel(t_list **head, t_list **node)
 	}
 }
 
-t_list	*ft_lstnew(int fd)
+t_list	*ft_lstnew(char *content, int fd)
 {
 	t_list	*new;
 
