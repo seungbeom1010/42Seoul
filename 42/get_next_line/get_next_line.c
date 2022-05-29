@@ -6,7 +6,7 @@
 /*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:13 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/26 21:48:56 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/05/29 16:09:14 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*get_newsave(char *content)
 		return (0);
 	new_content = (char *)malloc(ft_strlen(content) - index);
 	if (!new_content)
-		return (0);
+		return (NULL);
 	new_index = 0 ;
 	while (content[index + 1])
 	{
