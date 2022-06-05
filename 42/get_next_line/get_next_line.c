@@ -31,6 +31,7 @@ t_list	*get_node(t_list **head, int fd)
 	}
 	node = ft_lstnew(NULL, fd);
 	// 마지막 노드->next에 새롭게 생성된 구조체가 들어갔는지 확인해야함
+	// gnl test trial 1
 	return (node);
 }
 
