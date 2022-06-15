@@ -6,7 +6,7 @@
 /*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:49:47 by seunjang          #+#    #+#             */
-/*   Updated: 2022/05/26 21:31:58 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/06/14 22:37:54 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_list
 	int				fd;
 	char			*content;
 	struct s_list	*next;
-}	t_list;
+} t_list;
 
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strlen(const char *str);
