@@ -6,7 +6,7 @@
 /*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 23:26:19 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/06/21 18:45:30 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/06/23 12:06:46 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,15 @@ int	ft_strlen(const char *s)
 t_list	*ft_lstnew(int fd)
 {
 	t_list	*node;
+	char	*init_content;
 
 	node = (t_list *)malloc(sizeof(t_list));
-	if (!node)
+	init_content = (char *)malloc(sizeof(char));
+	if (!node || !init_content)
 		return (NULL);
 	node->fd = fd;
-	node->content = NULL;
+	init_content[0] = '\0';
+	node->content = init_content;
 	node->next = NULL;
 	return (node);
 }
@@ -71,7 +74,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (p);
 }
 
-void	ft_lstdel(int fd, t_list **head)
+void	ft_lstdel(int fd, t_list **head, t_list **real_node)
 {
 	t_list	*node;
 
@@ -79,18 +82,20 @@ void	ft_lstdel(int fd, t_list **head)
 	if (node->next == NULL)
 	{
 		*head = NULL;
-		free(node->content);
-		free(node);
+		free((*real_node)->content);
+		free(*real_node);
 		return ;
 	}
-	while (!(node->next->next))
+	while (node->next)
 	{
 		if (node->next->fd == fd)
+		{
+			node->next = node->next->next;
+			free((*real_node)->content);
+			free(*real_node);
 			break ;
-		node = node->next;
+		}
+		node = node->next ;
 	}
-	node = node->next->next;
-	free(node->next->content);
-	free(node->next);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 23:25:23 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/06/21 18:45:22 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/06/23 12:07:02 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,6 @@ char	*get_content(char *content, int fd)
 	buf_size = 1;
 	while (buf_size > 0)
 	{
-		if (!content)
-		{
-			content = (char *)malloc(sizeof(char));
-			content[0] = '\0';
-			if (!content)
-				return (NULL);
-		}
 		if (ft_strrchr(content, '\n'))
 			break ;
 		buf_size = read(fd, buf, BUFFER_SIZE);
@@ -93,7 +86,7 @@ char	*get_line(char *content)
 	return (line);
 }
 
-char	*get_save(char *content, int fd, t_list **head)
+char	*get_save(char *content)
 {
 	int		index;
 	int		sub_index;
@@ -102,11 +95,8 @@ char	*get_save(char *content, int fd, t_list **head)
 	index = 0;
 	while (content[index] && content[index] != '\n')
 		index++;
-	if (!(content[index]))
-	{
-		ft_lstdel(fd, &(*head));
+	if (!(content) || !(content[0]))
 		return (NULL);
-	}
 	sub_index = 0;
 	new_content = (char *)malloc(ft_strlen(content + index + 1) + 1);
 	if (!new_content)
@@ -136,10 +126,12 @@ char	*get_next_line(int fd)
 	node->content = get_content(node->content, fd);
 	if (!(node->content) || !(node->content[0]))
 	{
-		ft_lstdel(fd, &head);
+		ft_lstdel(fd, &head, &node);
 		return (NULL);
 	}
 	line = get_line(node->content);
-	node->content = get_save(node->content, fd, &head);
+	node->content = get_save(node->content);
+	if (!(node->content[0]) || !(node->content))
+		ft_lstdel(fd, &head, &node);
 	return (line);
 }
