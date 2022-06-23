@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
+/*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 23:25:23 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/06/23 12:09:00 by seungbeom        ###   ########.fr       */
+/*   Updated: 2022/06/23 16:24:00 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 t_list	*get_node(t_list **head, int fd)
 {
@@ -95,8 +95,6 @@ char	*get_save(char *content)
 	index = 0;
 	while (content[index] && content[index] != '\n')
 		index++;
-	if (!(content) || !(content[0]))
-		return (NULL);
 	sub_index = 0;
 	new_content = (char *)malloc(ft_strlen(content + index + 1) + 1);
 	if (!new_content)
@@ -131,7 +129,7 @@ char	*get_next_line(int fd)
 	}
 	line = get_line(node->content);
 	node->content = get_save(node->content);
-	if (!(node->content[0]) || !(node->content))
+	if (!(node->content) || !(node->content[0]))
 		ft_lstdel(fd, &head, &node);
 	return (line);
 }
