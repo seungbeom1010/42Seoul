@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seungbeom <seungbeom@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 23:26:19 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/06/23 16:18:16 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/06/26 22:31:33 by seungbeom        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
