@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/16 23:25:23 by seungbeom         #+#    #+#             */
-/*   Updated: 2022/06/23 16:18:07 by seunjang         ###   ########.fr       */
+/*   Created: 2022/07/20 17:51:34 by seunjang          #+#    #+#             */
+/*   Updated: 2022/07/20 19:16:56 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,13 @@ t_list	*get_node(t_list **head, int fd)
 
 	if (*head == NULL)
 	{
-		node = ft_lstnew(fd);
-		*head = node;
-		return (node);
+		*head = ft_lstnew(fd);
+		return (*head);
 	}
 	node = *head;
-	while (node)
+	while (node->fd != fd)
 	{
-		if (node->fd == fd)
-			return (node);
-		if (!(node->next))
+		if (node->next == NULL)
 		{
 			node->next = ft_lstnew(fd);
 			return (node->next);
