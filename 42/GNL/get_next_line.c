@@ -6,7 +6,7 @@
 /*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:51:34 by seunjang          #+#    #+#             */
-/*   Updated: 2022/07/20 19:16:56 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:33:20 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,32 @@ t_list	*get_node(t_list **head, int fd)
 	return (node);
 }
 
-char	*get_content(char *content, int fd)
+char	*get_content(char **content, int fd)
 {
 	char	buf[BUFFER_SIZE + 1];
 	char	*temp;
 	int		buf_size;
 
-	buf_size = 1;
-	while (buf_size > 0)
+	while (1)
 	{
-		if (ft_strrchr(content, '\n'))
+		if (ft_strrchr(*content, '\n'))
 			break ;
 		buf_size = read(fd, buf, BUFFER_SIZE);
+		if (buf_size == 0)
+			break ;
 		if (buf_size == -1)
 		{
-			free(content);
+			free(*content);
 			return (NULL);
 		}
 		buf[buf_size] = '\0';
-		temp = ft_strjoin(content, buf);
-		free(content);
-		content = temp;
+		temp = ft_strjoin(*content, buf);
+		if (!temp)
+			return (NULL);
+		free(*content);
+		*content = temp;
 	}
-	return (content);
+	return (*content);
 }
 
 char	*get_line(char *content)
@@ -92,13 +95,18 @@ char	*get_save(char *content)
 	index = 0;
 	while (content[index] && content[index] != '\n')
 		index++;
+	if (!(content[index++]))
+	{
+		free(content);
+		return (NULL);
+	}
 	sub_index = 0;
-	new_content = (char *)malloc(ft_strlen(content + index + 1) + 1);
+	new_content = (char *)malloc(ft_strlen(content + index) + 1);
 	if (!new_content)
 		return (NULL);
 	while (content[index])
 	{
-		new_content[sub_index] = content[index + 1];
+		new_content[sub_index] = content[index];
 		index++;
 		sub_index++;
 	}
@@ -118,15 +126,15 @@ char	*get_next_line(int fd)
 	node = get_node(&head, fd);
 	if (!node)
 		return (NULL);
-	node->content = get_content(node->content, fd);
+	node->content = get_content(&(node->content), fd);
 	if (!(node->content) || !(node->content[0]))
 	{
-		ft_lstdel(fd, &head, &node);
+		ft_lstdel(fd, &head, node);
 		return (NULL);
 	}
 	line = get_line(node->content);
 	node->content = get_save(node->content);
 	if (!(node->content) || !(node->content[0]))
-		ft_lstdel(fd, &head, &node);
+		ft_lstdel(fd, &head, node);
 	return (line);
 }

@@ -6,7 +6,7 @@
 /*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:51:51 by seunjang          #+#    #+#             */
-/*   Updated: 2022/07/20 19:16:54 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:15:49 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int		ft_strlen(const char *s);
 t_list	*ft_lstnew(int fd);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
-void	ft_lstdel(int fd, t_list **head, t_list **real_node);
+void	ft_lstdel(int fd, t_list **head, t_list *real_node);
 t_list	*get_node(t_list **head, int fd);
-char	*get_content(char *content, int fd);
+char	*get_content(char **content, int fd);
 char	*get_line(char *content);
 char	*get_save(char *content);
 char	*get_next_line(int fd);

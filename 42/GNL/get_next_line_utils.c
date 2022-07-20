@@ -6,10 +6,9 @@
 /*   By: seunjang <seunjang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:52:18 by seunjang          #+#    #+#             */
-/*   Updated: 2022/07/20 19:16:57 by seunjang         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:38:10 by seunjang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "get_next_line.h"
 
@@ -29,9 +28,14 @@ t_list	*ft_lstnew(int fd)
 	char	*init_content;
 
 	node = (t_list *)malloc(sizeof(t_list));
-	init_content = (char *)malloc(sizeof(char));
-	if (!node || !init_content)
+	if (!node)
 		return (NULL);
+	init_content = (char *)malloc(sizeof(char));
+	if (!init_content)
+	{
+		free(node);
+		return (NULL);
+	}
 	node->fd = fd;
 	init_content[0] = '\0';
 	node->content = init_content;
@@ -75,7 +79,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (p);
 }
 
-void	ft_lstdel(int fd, t_list **head, t_list **real_node)
+void	ft_lstdel(int fd, t_list **head, t_list *real_node)
 {
 	t_list	*node;
 
@@ -83,8 +87,8 @@ void	ft_lstdel(int fd, t_list **head, t_list **real_node)
 	if (node->next == NULL)
 	{
 		*head = NULL;
-		free((*real_node)->content);
-		free(*real_node);
+		free(real_node->content);
+		free(real_node);
 		return ;
 	}
 	while (node->next)
@@ -92,11 +96,10 @@ void	ft_lstdel(int fd, t_list **head, t_list **real_node)
 		if (node->next->fd == fd)
 		{
 			node->next = node->next->next;
-			free((*real_node)->content);
-			free(*real_node);
+			free(real_node->content);
+			free(real_node);
 			break ;
 		}
 		node = node->next ;
 	}
-	return ;
 }
